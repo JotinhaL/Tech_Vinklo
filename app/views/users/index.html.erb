@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<%= form_with url: search_user_url, method: :get do |form| %>
+  <%= form.text_field :query, placeholder: "Search" %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>
+
+
+<%= link_to "New user", new_user_path %>

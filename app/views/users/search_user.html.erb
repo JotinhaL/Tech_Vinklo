@@ -1,0 +1,17 @@
+<h1>Search Results</h1>
+
+<% if @users.any? %>
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+
+<div id="back">
+  <%= link_to "Back", users_path%>
+</div>
+<% else %>
+  <p>No results found.</p>
+<% end %>
