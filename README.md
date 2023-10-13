@@ -17,11 +17,13 @@ Aqui estão as versões das principais ferramentas usadas neste projeto:
 ## Começando a Usar o Projeto
 
 Siga as etapas abaixo para começar a usar o projeto Tech Vinklo:
-`$ git clone https://github.com/JotinhaL/Tech_Vinklo.git`
-`$ cd Tech_Vinklo`
-`$ bundle install`
-`$ rails db:setup`
-`$ rails server`
+```shell
+$ git clone https://github.com/JotinhaL/Tech_Vinklo.git
+$ cd Tech_Vinklo
+$ bundle install
+$ rails db:setup
+$ rails server
+```
 
 
 ## Testes
