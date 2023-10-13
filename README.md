@@ -1,6 +1,6 @@
 # Tech_Vinklo
 
-O projeto Tech Vinklo é uma aplicação web que simplifica o processo de cadastro e gerenciamento de usuários. Com uma interface intuitiva e amigável, Tech Vinklo permite que você:
+O projeto Tech Vinklo é uma aplicação web que simplifica o processo de cadastro e gerenciamento de usuários. Tech Vinklo permite que você:
 
 - Cadastre novos usuários, fornecendo informações como nome, CPF, e-mail e número de telefone.
 - Pesquise e filtre usuários com base em diferentes critérios, como nome, CPF, e-mail ou número de telefone.
