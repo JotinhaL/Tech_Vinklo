@@ -59,10 +59,22 @@ class UsersController < ApplicationController
 
   def search_user
     query = params[:query]
+    search_option = params[:search_option]
   
     if query.present?
       query = "%#{query.downcase}%"
-      @users = User.where("LOWER(name) LIKE :query OR LOWER(email) LIKE :query OR cpf LIKE :query OR phone LIKE :query", query: query)
+      case search_option
+      when "name"
+        @users = User.where("LOWER(name) LIKE :query", query: query)
+      when "cpf"
+        @users = User.where("cpf LIKE :query", query: query)
+      when "email"
+        @users = User.where("LOWER(email) LIKE :query", query: query)
+      when "phone"
+        @users = User.where("phone LIKE :query", query: query)
+      else
+        @users = User.all
+      end
     else
       @users = User.all
     end

@@ -2,9 +2,10 @@
 
 <h1>Users</h1>
 
-<%= form_with url: search_user_url, method: :get do |form| %>
-  <%= form.text_field :query, placeholder: "Search" %>
-  <%= form.submit "Search" %>
+<%= form_with(url: "/search_user", method: :get) do |form| %>
+  <%= form.select :search_option, options_for_select(["name", "cpf", "email", "phone"], params[:search_option]), include_blank: "Search for" %>
+  <%= form.text_field :query, placeholder: "Pesquisar" %>
+  <%= form.submit "Pesquisar" %>
 <% end %>
 
 <div id="users">

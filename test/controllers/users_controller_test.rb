@@ -43,16 +43,52 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(@user)
   end
 
-  test "should search users" do
-    user1 = User.create(name: "User 1", email: "user1@example.com", cpf: "568.912.970-44", phone: "1234567890")
-    user2 = User.create(name: "User 2", email: "user2@example.com", cpf: "708.476.600-60", phone: "0987654321")
-
-    get search_user_path(query: "User 1") 
-    assert_response :success  
-
-    assert_select 'body', /user1@example.com/ 
+  test "search_user returns all users when no query is provided" do
+    get search_user_path
+    assert_response :success
+    assert_template 'search_user'
+    assert_not_nil assigns(:users)
+    assert_equal User.all, assigns(:users)
   end
 
+  test "search_user returns users by name" do
+    user = User.create(name: "User 1", email: "user1@example.com", cpf: "568.912.970-44", phone: "1234567890")    
+
+    get search_user_path, params: { query: 'User', search_option: 'name' }
+    assert_response :success
+    assert_template 'search_user'
+    assert_not_nil assigns(:users)
+    assert_equal [user], assigns(:users)
+  end
+
+  test "search_user returns users by CPF" do
+    user = User.create(name: "User 1", email: "user1@example.com", cpf: "568.912.970-44", phone: "1234567890") 
+    get search_user_path, params: { query: '568.912.970-44', search_option: 'cpf' }
+    assert_response :success
+    assert_template 'search_user'
+    assert_not_nil assigns(:users)
+    assert_equal [user], assigns(:users)
+  end
+
+  test "search_user returns users by email" do
+    user = User.create(name: "User 1", email: "user1@example.com", cpf: "568.912.970-44", phone: "1234567890") 
+
+    get search_user_path, params: { query: 'user1@example.com', search_option: 'email' }
+    assert_response :success
+    assert_template 'search_user'
+    assert_not_nil assigns(:users)
+    assert_equal [user], assigns(:users)
+  end
+
+  test "search_user returns users by phone" do
+    user = User.create(name: "User 1", email: "user1@example.com", cpf: "568.912.970-44", phone: "1234567890") 
+    get search_user_path, params: { query: '1234567890', search_option: 'phone' }
+    assert_response :success
+    assert_template 'search_user'
+    assert_not_nil assigns(:users)
+    assert_equal [user], assigns(:users)
+  end
+  
   test "should destroy user" do
     assert_difference("User.count", -1) do
       delete user_url(@user)
