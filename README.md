@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 # Tech_Vinklo
-# Tech_Vinklo
+
